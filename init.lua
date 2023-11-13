@@ -1,9 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- [[ Install `lazy.nvim` plugin manager ]]
---    https://github.com/folke/lazy.nvim
---    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 
 if not vim.loop.fs_stat(lazypath) then
@@ -12,29 +9,22 @@ if not vim.loop.fs_stat(lazypath) then
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
+    '--branch=stable',
     lazypath,
   }
 end
 vim.opt.rtp:prepend(lazypath)
 
--- [[ Configure plugins ]]
--- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
---
---  You can also configure plugins after the setup call,
---    as they will be available in your neovim runtime.
 require('lazy').setup({
-  -- NOTE: First, some plugins that don't require any configuration
-  --
-
   'ThePrimeagen/harpoon',
   'bluz71/vim-nightfly-colors',
 
+  "lukas-reineke/lsp-format.nvim",
+
   -- theme
   'ishan9299/nvim-solarized-lua',
-  'tjdevries/colorbuddy.vim',
-  'tjdevries/gruvbuddy.nvim',
+  "EdenEast/nightfox.nvim",
+  "rebelot/kanagawa.nvim",
 
   -- File Tree
   "nvim-tree/nvim-tree.lua",
@@ -48,9 +38,10 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.4',
     dependencies = { 'nvim-lua/plenary.nvim' }
-    },
+  },
 
   {
     'windwp/nvim-autopairs',
@@ -99,7 +90,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',     opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -147,6 +138,8 @@ require('lazy').setup({
     --   vim.cmd.colorscheme 'onedark'
     -- end,
   },
+
+  { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
 
   {
     -- Set lualine as statusline
@@ -271,12 +264,13 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fc', '<cmd>:Telescope colorscheme<CR>', {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- custom keybinds
-vim.keymap.set('n', '<A-S-n>', '<cmd>:NvimTreeToggle<CR>', {noremap = true })
+vim.keymap.set('n', '<A-S-n>', '<cmd>:NvimTreeToggle<CR>', { noremap = true })
 vim.keymap.set('n', '<C-l>', '<cmd>:wincmd l<CR>', { noremap = true })
 vim.keymap.set('n', '<C-h>', '<cmd>:wincmd h<CR>', { noremap = true })
 vim.keymap.set('n', '<C-j>', '<cmd>:wincmd j<CR>', { noremap = true })
@@ -360,7 +354,7 @@ local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
     require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
+      search_dirs = { git_root },
     })
   end
 end
@@ -636,8 +630,8 @@ local function my_on_attach(bufnr)
   api.config.mappings.default_on_attach(bufnr)
 
   -- custom mappings
-  vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent,        opts('Up'))
-  vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
+  vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent, opts('Up'))
+  vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
 end
 
 -- OR setup with some options
@@ -675,4 +669,90 @@ require("nvim-tree").setup({
 
 vim.g.solarized_diffmode = 'high'
 vim.g.solarized_statusline = 'flat'
-vim.cmd [[colorscheme solarized]]
+
+require("gruvbox").setup({
+  terminal_colors = true, -- add neovim terminal colors
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = {
+    strings = true,
+    emphasis = true,
+    comments = true,
+    operators = false,
+    folds = true,
+  },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true,    -- invert background for search, diffs, statuslines and errors
+  contrast = "hard", -- can be "hard", "soft" or empty string
+  palette_overrides = {},
+  overrides = {},
+  dim_inactive = false,
+  transparent_mode = false,
+})
+
+-- Default options
+require('nightfox').setup({
+  options = {
+    -- Compiled file's destination location
+    compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+    compile_file_suffix = "_compiled", -- Compiled file suffix
+    transparent = false,               -- Disable setting background
+    terminal_colors = true,            -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+    dim_inactive = false,              -- Non focused panes set to alternative background
+    module_default = true,             -- Default enable value for modules
+    colorblind = {
+      enable = false,                  -- Enable colorblind support
+      simulate_only = false,           -- Only show simulated colorblind colors and not diff shifted
+      severity = {
+        protan = 0,                    -- Severity [0,1] for protan (red)
+        deutan = 0,                    -- Severity [0,1] for deutan (green)
+        tritan = 0,                    -- Severity [0,1] for tritan (blue)
+      },
+    },
+    styles = {             -- Style to be applied to different syntax groups
+      comments = "italic", -- Value is any valid attr-list value `:help attr-list`
+      conditionals = "italic",
+      constants = "NONE",
+      functions = "NONE",
+      keywords = "italic",
+      numbers = "NONE",
+      operators = "NONE",
+      strings = "NONE",
+      types = "NONE",
+      variables = "NONE",
+    },
+    inverse = { -- Inverse highlight for different types
+      match_paren = false,
+      visual = false,
+      search = false,
+    },
+    modules = { -- List of various plugins and additional options
+      -- ...
+    },
+  },
+  palettes = {},
+  specs = {},
+  groups = {},
+})
+
+vim.cmd("colorscheme carbonfox")
+
+require("lsp-format").setup {}
+
+local lsp_format_on_attach = function(client, bufnr)
+  require("lsp-format").on_attach(client, bufnr)
+end
+require("lspconfig").gopls.setup { on_attach = lsp_format_on_attach }
+
+vim.cmd("set noswapfile")
+
+-- autocmd to format on save
+vim.api.nvim_create_autocmd("BufWrite", {
+  pattern = { "*.c", "*.lua", "*.ts", ".tsx" },
+  command = ":Format",
+})
