@@ -756,3 +756,9 @@ vim.api.nvim_create_autocmd("BufWrite", {
   pattern = { "*.c", "*.lua", "*.ts", ".tsx" },
   command = ":Format",
 })
+
+-- autocmd to highlight current line while yanking
+vim.api.nvim_create_autocmd("TextYankPost", {
+  pattern = "*",
+  callback = function() vim.highlight.on_yank { timeout = 200 } end
+})
