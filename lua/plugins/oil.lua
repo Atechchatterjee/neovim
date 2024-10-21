@@ -51,7 +51,8 @@ return {
         ['g?'] = 'actions.show_help',
         ['<CR>'] = 'actions.select',
         ['<C-s>'] = { 'actions.select', opts = { vertical = true }, desc = 'Open the entry in a vertical split' },
-        ['<C-h>'] = { 'actions.select', opts = { horizontal = true }, desc = 'Open the entry in a horizontal split' },
+        -- ['<C-h>'] = { 'actions.select', opts = { horizontal = true }, desc = 'Open the entry in a horizontal split' },
+        ['<C-h>'] = false,
         ['<C-t>'] = { 'actions.select', opts = { tab = true }, desc = 'Open the entry in new tab' },
         ['<C-p>'] = 'actions.preview',
         ['<C-c>'] = 'actions.close',
@@ -69,7 +70,7 @@ return {
       use_default_keymaps = true,
       view_options = {
         -- Show files and directories that start with "."
-        show_hidden = false,
+        show_hidden = true,
         -- This function defines what is considered a "hidden" file
         is_hidden_file = function(name, bufnr)
           return vim.startswith(name, '.')
@@ -109,13 +110,14 @@ return {
       float = {
         -- Padding around the floating window
         padding = 2,
-        max_width = 0,
-        max_height = 0,
+        max_width = 140,
+        max_height = 100,
         border = 'rounded',
         win_options = {
           winblend = 0,
         },
         -- preview_split: Split direction: "auto", "left", "right", "above", "below".
+        preview = true,
         preview_split = 'auto',
         -- This is the config that will be passed to nvim_open_win.
         -- Change values here to customize the layout
@@ -172,5 +174,6 @@ return {
       },
     }
     vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+    vim.keymap.set('n', '<A-S-n>', "<CMD>:lua require('oil').open_float('.')<CR>", { desc = 'Open parent directory' })
   end,
 }

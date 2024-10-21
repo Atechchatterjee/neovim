@@ -6,6 +6,8 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.cmd [[set colorcolumn=0]]
+
 vim.opt.mouse = 'a'
 
 vim.opt.showmode = false
@@ -30,14 +32,14 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.opt.list = true
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 vim.opt.inccommand = 'split'
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 vim.opt.scrolloff = 10
 
@@ -49,10 +51,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
-vim.keymap.set('n', '<A-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<A-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<A-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<A-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -73,10 +75,8 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   spec = {
     { import = 'plugins' },
-    { import = 'kickstart/plugins' },
   },
 }, {
   ui = {
@@ -91,3 +91,19 @@ require('lazy').setup({
     },
   },
 })
+
+require 'config.customkeybinds'
+
+require('notify').setup {
+  background_colour = '#010101',
+}
+
+-- highlight background in visual mode
+-- vim.api.nvim_set_hl(0, 'Visual', { bg = '#424242' })
+
+-- vim.cmd 'au InsertEnter * set cul'
+-- vim.cmd 'au InsertLeave * set nocul'
+
+-- vim.cmd [[colorscheme everforest]]
+-- vim.cmd [[highlight LineNr ctermfg=grey ctermbg=NONE]]
+-- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
