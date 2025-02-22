@@ -1,5 +1,37 @@
 return {
   {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+    opts = {
+      transparent = true,
+    },
+    config = function()
+      -- vim.cmd [[ colorscheme catppuccin-mocha ]]
+    end,
+  },
+  {
+    'nuvic/flexoki-nvim',
+    name = 'flexoki',
+    config = function()
+      -- vim.cmd [[ colorscheme flexoki ]]
+    end,
+  },
+  {
+    'ellisonleao/gruvbox.nvim',
+    priority = 1000,
+    opts = {
+      transparent_mode = true,
+    },
+  },
+  {
+    'sainnhe/gruvbox-material',
+    config = function()
+      -- vim.cmd [[colorscheme gruvbox-material]]
+      -- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+    end,
+  },
+  {
     'ramojus/mellifluous.nvim',
     init = function()
       -- vim.cmd.colorscheme 'mellifluous'
@@ -101,7 +133,7 @@ return {
           }
         end,
       }
-      -- vim.cmd.colorscheme 'tokyonight'
+      -- vim.cmd.colorscheme 'tokyonight-moon'
     end,
   },
   {
@@ -177,17 +209,38 @@ return {
     opts = {},
     config = function()
       require('solarized-osaka').setup {
-        transparent = true,
+        transparent = false,
         dim_inactive = true,
       }
       -- vim.cmd.colorscheme 'solarized-osaka'
     end,
   },
+  -- {
+  --   'Atechchatterjee/yugen.nvim',
+  --   config = function()
+  --     vim.cmd.colorscheme 'yugen'
+  --   end,
+  -- },
   {
-    'bettervim/yugen.nvim',
+    dir = '~/coding/tejas.nvim',
     config = function()
-      vim.cmd.colorscheme 'yugen'
+      vim.cmd.colorscheme 'tejas'
     end,
+  },
+  {
+    dir = '~/coding/yugen-light.nvim',
+    config = function()
+      -- vim.cmd.colorscheme 'yugen-light'
+    end,
+  },
+  {
+    dir = '~/coding/neelam.nvim',
+    config = function()
+      -- vim.cmd.colorscheme 'neelam'
+    end,
+  },
+  {
+    'fenetikm/falcon',
   },
   {
     'steguiosaur/fullerene.nvim',
@@ -326,7 +379,7 @@ return {
           -- Compiled file's destination location
           compile_path = vim.fn.stdpath 'cache' .. '/nightfox',
           compile_file_suffix = '_compiled', -- Compiled file suffix
-          transparent = true, -- Disable setting background
+          transparent = false, -- Disable setting background
           terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
           dim_inactive = false, -- Non focused panes set to alternative background
           module_default = true, -- Default enable value for modules
@@ -373,7 +426,7 @@ return {
       }
 
       -- setup must be called before loading
-      -- vim.cmd 'colorscheme duskfox'
+      -- vim.cmd 'colorscheme terafox'
     end,
   },
   {
@@ -388,5 +441,14 @@ return {
     config = function()
       -- vim.cmd 'colorscheme iceberg'
     end,
+  },
+  {
+    'oxfist/night-owl.nvim',
+    config = function()
+      -- vim.cmd 'colorscheme night-owl'
+    end,
+  },
+  {
+    'protesilaos/tempus-themes',
   },
 }

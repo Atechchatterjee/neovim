@@ -45,6 +45,9 @@ vim.opt.scrolloff = 10
 
 vim.wo.wrap = false
 
+-- sets the vim cursor to underscore
+vim.cmd [[set guicursor=i:hor20-Cursor]]
+
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -94,16 +97,25 @@ require('lazy').setup({
 
 require 'config.customkeybinds'
 
-require('notify').setup {
-  background_colour = '#010101',
-}
+-- vim.cmd [[hi Normal guibg=#1A1A1A ctermbg=NONE]]
+-- vim.cmd [[hi SignColumn guibg=#1A1A1A]]
 
--- highlight background in visual mode
--- vim.api.nvim_set_hl(0, 'Visual', { bg = '#424242' })
+-- sets the cursor color
+vim.cmd [[hi Cursor guibg=#606060]]
+-- vim.cmd [[hi CursorLine guibg=#141414]]
 
--- vim.cmd 'au InsertEnter * set cul'
--- vim.cmd 'au InsertLeave * set nocul'
+-- keybinds for todo-comments
+vim.keymap.set('n', ']t', function()
+  require('todo-comments').jump_next()
+end, { desc = 'Next todo comment' })
 
--- vim.cmd [[colorscheme everforest]]
--- vim.cmd [[highlight LineNr ctermfg=grey ctermbg=NONE]]
--- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+vim.keymap.set('n', '[t', function()
+  require('todo-comments').jump_prev()
+end, { desc = 'Previous todo comment' })
+
+vim.keymap.set('n', '<leader>ft', function()
+  vim.cmd [[TodoTelescope]]
+end, { desc = 'Open list of todos in telescope' })
+
+vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+-- vim.cmd [[highlight Normal ctermfg=grey ctermbg=black]]
