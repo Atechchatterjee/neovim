@@ -46,7 +46,7 @@ vim.opt.scrolloff = 10
 vim.wo.wrap = false
 
 -- sets the vim cursor to underscore
-vim.cmd [[set guicursor=i:hor20-Cursor]]
+-- vim.cmd [[set guicursor=i:hor20-Cursor]]
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
@@ -97,7 +97,7 @@ require('lazy').setup({
 
 require 'config.customkeybinds'
 
--- vim.cmd [[hi Normal guibg=#1A1A1A ctermbg=NONE]]
+-- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 -- vim.cmd [[hi SignColumn guibg=#1A1A1A]]
 
 -- sets the cursor color
@@ -117,5 +117,5 @@ vim.keymap.set('n', '<leader>ft', function()
   vim.cmd [[TodoTelescope]]
 end, { desc = 'Open list of todos in telescope' })
 
-vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+-- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 -- vim.cmd [[highlight Normal ctermfg=grey ctermbg=black]]

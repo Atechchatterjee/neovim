@@ -1,5 +1,11 @@
 return {
   {
+    'rktjmp/lush.nvim',
+  },
+  {
+    'savq/melange-nvim',
+  },
+  {
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
@@ -79,6 +85,7 @@ return {
           startify = true,
         },
       }
+      -- vim.cmd [[colorscheme mellifluous]]
       -- vim.api.nvim_create_autocmd('ColorScheme', {
       --   command = [[highlight CursorLine guibg=#2B2A2A cterm=underline]],
       -- })
@@ -133,7 +140,7 @@ return {
           }
         end,
       }
-      -- vim.cmd.colorscheme 'tokyonight-moon'
+      -- vim.cmd.colorscheme 'tokyonight'
     end,
   },
   {
@@ -215,18 +222,18 @@ return {
       -- vim.cmd.colorscheme 'solarized-osaka'
     end,
   },
-  -- {
-  --   'Atechchatterjee/yugen.nvim',
-  --   config = function()
-  --     vim.cmd.colorscheme 'yugen'
-  --   end,
-  -- },
   {
-    dir = '~/coding/tejas.nvim',
+    'Atechchatterjee/tejas.nvim',
     config = function()
-      vim.cmd.colorscheme 'tejas'
+      -- vim.cmd.colorscheme 'tejas'
     end,
   },
+  -- {
+  --   dir = '~/coding/tejas.nvim',
+  --   config = function()
+  --     vim.cmd.colorscheme 'tejas'
+  --   end,
+  -- },
   {
     dir = '~/coding/yugen-light.nvim',
     config = function()
@@ -366,7 +373,7 @@ return {
       style = 'darker',
     },
     init = function()
-      -- vim.cmd 'colorscheme onedark'
+      vim.cmd 'colorscheme onedark'
     end,
   },
   { 'bluz71/vim-nightfly-colors', name = 'nightfly', lazy = false, priority = 1000 },
@@ -379,7 +386,7 @@ return {
           -- Compiled file's destination location
           compile_path = vim.fn.stdpath 'cache' .. '/nightfox',
           compile_file_suffix = '_compiled', -- Compiled file suffix
-          transparent = false, -- Disable setting background
+          transparent = true, -- Disable setting background
           terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
           dim_inactive = false, -- Non focused panes set to alternative background
           module_default = true, -- Default enable value for modules
@@ -426,7 +433,7 @@ return {
       }
 
       -- setup must be called before loading
-      -- vim.cmd 'colorscheme terafox'
+      -- vim.cmd 'colorscheme nightfox'
     end,
   },
   {
