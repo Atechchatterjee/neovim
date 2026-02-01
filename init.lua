@@ -62,7 +62,7 @@ vim.opt.scrolloff = 10
 vim.wo.wrap = false
 
 -- sets the vim cursor to underscore
-vim.cmd [[set guicursor=i:hor20-Cursor]]
+-- vim.cmd [[set guicursor=i:hor20-Cursor]]
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 

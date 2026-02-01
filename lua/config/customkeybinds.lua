@@ -18,3 +18,8 @@ end, { desc = 'Toggles 80 char column line' })
 vim.keymap.set('n', '<leader>gg', function()
   vim.cmd [[:LazyGit]]
 end)
+
+vim.keymap.set('n', '<leader>*', function()
+  vim.opt.hlsearch = true
+  vim.cmd 'normal! *N'
+end, { desc = 'Highlight word under cursor' })

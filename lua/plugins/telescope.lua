@@ -71,6 +71,40 @@ return { -- Fuzzy Finder (files, lsp, etc)
       })
     end, { desc = '[/] Fuzzily search in current buffer' })
 
+    vim.keymap.set('v', '<leader>/', function()
+      local builtin = require 'telescope.builtin'
+      local themes = require 'telescope.themes'
+
+      -- Yank visual selection into register z
+      vim.cmd 'normal! "zy'
+
+      local text = vim.fn.getreg 'z'
+      text = text:gsub('\n', '') -- remove newlines (important)
+
+      builtin.current_buffer_fuzzy_find(themes.get_dropdown {
+        winblend = 10,
+        previewer = false,
+        default_text = text,
+      })
+    end, { desc = '[/] Fuzzily search highlighted text in current buffer' })
+
+    vim.keymap.set('v', '<leader>fg', function()
+      local builtin = require 'telescope.builtin'
+      local themes = require 'telescope.themes'
+
+      -- Yank visual selection into register z
+      vim.cmd 'normal! "zy'
+
+      local text = vim.fn.getreg 'z'
+      text = text:gsub('\n', '') -- live_grep must be single-line
+
+      builtin.live_grep(themes.get_dropdown {
+        winblend = 15,
+        previewer = true,
+        default_text = text,
+      })
+    end, { desc = '[fg] Live grep highlighted text' })
+
     -- It's also possible to pass additional configuration options.
     --  See `:help telescope.builtin.live_grep()` for information about particular keys
     vim.keymap.set('n', '<leader>s/', function()
