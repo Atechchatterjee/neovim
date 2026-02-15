@@ -19,7 +19,7 @@ return {
     -- create the highlight groups in the highlight setup hook, so they are reset
     -- every time the colorscheme changes
     hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-      local indent_color = '#2A2A2A'
+      local indent_color = '#2d2419'
       vim.api.nvim_set_hl(0, 'RainbowRed', { fg = indent_color })
       vim.api.nvim_set_hl(0, 'RainbowYellow', { fg = indent_color })
       vim.api.nvim_set_hl(0, 'RainbowBlue', { fg = indent_color })

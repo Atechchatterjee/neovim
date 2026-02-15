@@ -1,6 +1,14 @@
 return {
   -- Main LSP Configuration
   'neovim/nvim-lspconfig',
+  opts = {
+    document_highlight = {
+      enabled = false,
+    },
+  },
+  init = function()
+    vim.lsp.handlers['textDocument/documentHighlight'] = function() end
+  end,
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     {
