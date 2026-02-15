@@ -113,7 +113,7 @@ require('lazy').setup({
 
 require 'config.customkeybinds'
 
-vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+-- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 -- vim.cmd [[hi SignColumn guibg=#282727]]
 
 -- sets the cursor color
@@ -167,3 +167,13 @@ vim.diagnostic.config {
     prefix = '',
   },
 }
+
+vim.opt.fillchars = { vert = '│', horiz = '─', ... } -- Use unicode or other characters
+vim.cmd 'hi VertSplit guifg=#3d3226 guibg=#111111'
+vim.cmd 'hi WinSeparator guifg=#3d3226 guibg=#111111' -- For horizontal splits with laststatus=3
+vim.opt.laststatus = 3 -- Optional: unified status line
+
+-- vim.cmd.colorscheme 'parchment-candlelight'
+-- require('parchment-candlelight').setup()
+-- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+-- vim.opt.termguicolors = true

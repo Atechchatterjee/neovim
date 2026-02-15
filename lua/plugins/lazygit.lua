@@ -18,4 +18,15 @@ return {
   keys = {
     { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
   },
+
+  config = function()
+    vim.schedule(function()
+      vim.api.nvim_create_user_command('LazyGit', function()
+        local current = vim.opt.shell
+        vim.opt.shell = 'bash'
+        require('lazygit').lazygit()
+        vim.opt.shell = current
+      end, { force = true })
+    end)
+  end,
 }
