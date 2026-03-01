@@ -51,3 +51,6 @@ vim.keymap.set({ 'n', 'v' }, '<C-S-f>', function()
     default_text = text,
   })
 end, { desc = 'Live grep' })
+
+vim.keymap.set({ 'v' }, 'p', '"_dP', { desc = 'Paste without yanking' })
+-- vim.keymap.set({ 'n', 'v' }, 'x', '"_d', { desc = 'Delete without yanking' })

@@ -34,6 +34,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
           enable_preview = true,
         },
       },
+      select = {
+        telescope = {
+          borderchars = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+        },
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),

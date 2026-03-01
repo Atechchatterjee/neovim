@@ -1,11 +1,109 @@
 return {
   {
+    'vague-theme/vague.nvim',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other plugins
+    config = function()
+      require('vague').setup {
+        -- Keep styles minimal to reduce visual noise
+        bold = true,
+        italic = true,
+        style = {
+          boolean = 'bold',
+          number = 'none',
+          float = 'none',
+          error = 'bold',
+          comments = 'italic',
+          conditionals = 'none',
+          functions = 'none',
+          headings = 'bold',
+          operators = 'none',
+          strings = 'italic',
+          variables = 'none',
+
+          keywords = 'none',
+          keyword_return = 'none', -- less emphasis than default
+          keywords_loop = 'none',
+          keywords_label = 'none',
+          keywords_exception = 'none',
+
+          builtin_constants = 'none', -- less visual weight
+          builtin_functions = 'none',
+          builtin_types = 'none', -- less visual weight
+          builtin_variables = 'none',
+        },
+
+        -- Zenburn-inspired muted palette replacing vague's cooler/brighter tones.
+        -- Key idea: warm dark background, low-saturation earthy accents, nothing pops.
+        colors = {
+          -- Backgrounds — zenburn's signature warm near-black
+          bg = '#1c1c1c', -- warmer than vague's #141415
+          inactiveBg = '#232323', -- slightly lighter warm gray
+          line = '#2a2a2a', -- cursorline / status line bg
+
+          -- Foreground — warm off-white, less blue than vague's #cdcdcd
+          fg = '#c5bfa0', -- zenburn's main fg tone
+
+          -- Comments — muted warm gray, readable but recessed
+          comment = '#6f6f6f',
+
+          -- Syntax — all desaturated, warm-leaning
+          func = '#9c8a8a', -- dusty rose (replaces vague's brighter #c48282)
+          string = '#b5a882', -- warm sand (replaces orange-y #e8b589)
+          number = '#a89060', -- muted amber (replaces #e0a363)
+          keyword = '#7a9aaa', -- soft slate blue (replaces #6e94b2, slightly warmer)
+          type = '#8aaba0', -- muted teal (replaces #9bb4bc)
+          builtin = '#8aaba0', -- same as type — fewer distinct colors
+          operator = '#808070', -- warm gray-green (zenburn flavor)
+          property = '#a8a898', -- warm gray (replaces cool #c3c3d5)
+          constant = '#a09898', -- desaturated mauve (replaces #aeaed1)
+          parameter = '#a09898', -- same as constant — fewer colors
+
+          -- UI chrome
+          floatBorder = '#5a5a5a', -- dimmer border
+          visual = '#3a3530', -- warm brown selection (replaces cool #333738)
+          search = '#3d3820', -- warm highlight for search
+
+          -- Diagnostics — kept distinguishable but not glaring
+          error = '#b05050', -- muted red (replaces #d8647e)
+          warning = '#b09050', -- muted amber (replaces #f3be7c)
+          hint = '#6a88b0', -- muted blue (replaces #7e98e8)
+
+          -- Git diff
+          plus = '#6a8a5a', -- muted green (replaces #7fa563)
+          delta = '#b09050', -- same as warning
+        },
+      }
+      -- vim.cmd 'colorscheme vague'
+    end,
+  },
+  {
+    'phha/zenburn.nvim',
+    config = function()
+      vim.cmd [[colorscheme zenburn]]
+
+      -- Set the background (bg) to a specific hex color (e.g., a light blue)
+      -- and foreground (fg) if needed.
+      vim.api.nvim_set_hl(0, 'Visual', { bg = '#B7B7B7', fg = '#000000', bold = false })
+
+      -- If you switch colorschemes dynamically, use an autocommand to re-apply:
+      vim.api.nvim_create_autocmd({ 'VimEnter', 'ColorScheme' }, {
+        group = vim.api.nvim_create_augroup('CustomVisuals', {}),
+        callback = function()
+          vim.api.nvim_set_hl(0, 'Visual', { bg = '#B7B7B7', fg = '#000000', bold = false })
+        end,
+      })
+
+      vim.cmd [[hi Normal guibg=#312F33 ctermbg=NONE]]
+    end,
+  },
+  {
     dir = '~/.config/nvim/lua/parchment-candlelight',
     name = 'parchment-candlelight',
     lazy = false, -- Load immediately
     priority = 1000, -- Load before other plugins
     config = function()
-      require('parchment-candlelight').setup()
+      -- require('parchment-candlelight').setup()
     end,
   },
   {
@@ -14,7 +112,7 @@ return {
     priority = 1000,
     opts = {},
     init = function()
-      -- vim.cmd.colorscheme 'github-monochrome-rosepine'
+      -- vim.cmd.colorscheme 'github-monochrome-zenbones'
     end,
   },
   {
@@ -23,7 +121,6 @@ return {
     priority = 1000,
     init = function()
       local lackluster = require 'lackluster'
-
       -- !must called setup() before setting the colorscheme!
       lackluster.setup {
         disable_plugin = {
@@ -45,7 +142,6 @@ return {
       -- vwm.cml.wolorscheme(klackluster-hack") -- my favorite
       -- vim.cmd.colorscheme 'lackluster-night'
     end,
-    l,
     {
       'blazkowolf/gruber-darker.nvim',
       config = function()

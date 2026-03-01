@@ -1,6 +1,5 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 vim.g.have_nerd_font = true
 
 vim.opt.number = true
@@ -136,9 +135,9 @@ end, { desc = 'Open list of todos in telescope' })
 -- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 -- vim.cmd [[highlight Normal ctermfg=grey ctermbg=black]]
 
-vim.g.lazygit_floating_window_winblend = 0 -- transparency of floating window
+vim.g.lazygit_floating_window_winblend = 1 -- transparency of floating window
 vim.g.lazygit_floating_window_scaling_factor = 0.9 -- scaling factor for floating window
-vim.g.lazygit_floating_window_border_chars = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' } -- customize lazygit popup window border characters
+-- vim.g.lazygit_floating_window_border_chars = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' } -- customize lazygit popup window border characters
 vim.g.lazygit_floating_window_use_plenary = 0 -- use plenary.nvim to manage floating window if available
 vim.g.lazygit_use_neovim_remote = 1 -- fallback to 0 if neovim-remote is not installed
 
@@ -168,12 +167,11 @@ vim.diagnostic.config {
   },
 }
 
-vim.opt.fillchars = { vert = '│', horiz = '─', ... } -- Use unicode or other characters
-vim.cmd 'hi VertSplit guifg=#3d3226 guibg=#111111'
-vim.cmd 'hi WinSeparator guifg=#3d3226 guibg=#111111' -- For horizontal splits with laststatus=3
+-- vim.opt.fillchars = { vert = '│', horiz = '─', ... } -- Use unicode or other characters
+-- vim.cmd 'hi VertSplit guifg=#3d3226 guibg=#111111'
+-- vim.cmd 'hi WinSeparator guifg=#3d3226 guibg=#111111' -- For horizontal splits with laststatus=3
 vim.opt.laststatus = 3 -- Optional: unified status line
 
 -- vim.cmd.colorscheme 'parchment-candlelight'
 -- require('parchment-candlelight').setup()
--- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
