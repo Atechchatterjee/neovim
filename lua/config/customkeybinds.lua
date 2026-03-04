@@ -61,47 +61,57 @@ vim.keymap.set('i', '<A-S-Tab>', '<ESC>:tabprevious<CR>i', { noremap = true })
 
 -- Directory picker that opens in a small bottom buffer and navigates with Oil
 local function open_dir_picker(dirs)
-  -- Create a scratch buffer
+  -- Capture the window that invoked the picker (your active Oil split)
+  local origin_win = vim.api.nvim_get_current_win()
+
   local buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, dirs)
   vim.bo[buf].modifiable = false
   vim.bo[buf].buftype = 'nofile'
   vim.bo[buf].filetype = 'dirpicker'
 
-  -- Open a small horizontal split at the bottom
   local height = math.min(#dirs, 10)
   vim.cmd('botright ' .. height .. 'split')
   local win = vim.api.nvim_get_current_win()
   vim.api.nvim_win_set_buf(win, buf)
 
-  -- Window options
   vim.wo[win].number = false
   vim.wo[win].relativenumber = false
   vim.wo[win].signcolumn = 'no'
   vim.wo[win].wrap = false
   vim.wo[win].cursorline = true
 
-  -- <Enter> to pick a directory and open in Oil
   vim.keymap.set('n', '<CR>', function()
     local line = vim.api.nvim_get_current_line()
-    local path = line:match '^%s*(.-)%s*$' -- trim whitespace
+    local path = line:match '^%s*(.-)%s*$'
     vim.api.nvim_win_close(win, true)
+
+    -- Return focus to the Oil split that opened the picker
+    if vim.api.nvim_win_is_valid(origin_win) then
+      vim.api.nvim_set_current_win(origin_win)
+    end
+
     vim.cmd('Oil ' .. vim.fn.fnameescape(path))
   end, { buffer = buf, noremap = true, silent = true })
 
-  -- <Esc> or q to close without picking
   for _, key in ipairs { '<Esc>', 'q' } do
     vim.keymap.set('n', key, function()
       vim.api.nvim_win_close(win, true)
+      -- Restore focus even on cancel
+      if vim.api.nvim_win_is_valid(origin_win) then
+        vim.api.nvim_set_current_win(origin_win)
+      end
     end, { buffer = buf, noremap = true, silent = true })
   end
 end
 
 -- Example list of directories — replace or generate this dynamically
 local my_dirs = {
+  '~/',
   '~/coding/',
-  '~/.config/',
   '~/.config/nvim/',
+  '~/.config/ghostty/',
+  '~/.config/',
 }
 
 -- Bind to a keybind of your choice, e.g. <leader>fd
