@@ -4,6 +4,9 @@ return {
     require('oil').setup {
       default_file_explorer = true,
       columns = {
+        'permissions',
+        'size',
+        'mtime',
         'icon',
       },
       -- Buffer-local options to use for oil buffers
@@ -25,7 +28,7 @@ return {
       -- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
       delete_to_trash = false,
       -- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
-      skip_confirm_for_simple_edits = false,
+      skip_confirm_for_simple_edits = true,
       -- Selecting a new/moved/renamed file or directory will prompt you to save changes first
       -- (:help prompt_save_on_select_new_entry)
       prompt_save_on_select_new_entry = true,
@@ -65,12 +68,13 @@ return {
         ['gx'] = 'actions.open_external',
         ['g.'] = 'actions.toggle_hidden',
         ['g\\'] = 'actions.toggle_trash',
+        ['<S-CR>'] = 'actions.open_external',
       },
       -- Set to false to disable all of the above keymaps
       use_default_keymaps = true,
       view_options = {
         -- Show files and directories that start with "."
-        show_hidden = true,
+        show_hidden = false,
         -- This function defines what is considered a "hidden" file
         is_hidden_file = function(name, bufnr)
           return vim.startswith(name, '.')
