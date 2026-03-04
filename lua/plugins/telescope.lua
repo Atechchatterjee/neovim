@@ -26,6 +26,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
     local telescope = require 'telescope'
 
     telescope.setup {
+      defaults = { -- ← needs to be inside defaults
+        file_ignore_patterns = {
+          '^%.git/',
+          'node_modules/',
+        },
+      },
       pickers = {
         find_files = {
           hidden = true,
