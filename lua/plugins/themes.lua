@@ -84,13 +84,13 @@ return {
 
       -- Set the background (bg) to a specific hex color (e.g., a light blue)
       -- and foreground (fg) if needed.
-      vim.api.nvim_set_hl(0, 'Visual', { bg = '#B7B7B7', fg = '#000000', bold = false })
+      -- vim.api.nvim_set_hl(0, 'Visual', { bg = '#B7B7B7', fg = '#000000', bold = false })
 
       -- If you switch colorschemes dynamically, use an autocommand to re-apply:
       vim.api.nvim_create_autocmd({ 'VimEnter', 'ColorScheme' }, {
         group = vim.api.nvim_create_augroup('CustomVisuals', {}),
         callback = function()
-          vim.api.nvim_set_hl(0, 'Visual', { bg = '#B7B7B7', fg = '#000000', bold = false })
+          vim.api.nvim_set_hl(0, 'Visual', { bg = '#337A00', fg = '#000000', bold = false })
         end,
       })
 
