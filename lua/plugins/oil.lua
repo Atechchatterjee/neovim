@@ -181,5 +181,38 @@ return {
     }
     vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
     vim.keymap.set('n', '<A-S-n>', "<CMD>:lua require('oil').open_float('.')<CR>", { desc = 'Open parent directory' })
+
+    -- When exiting Neovim, if the current buffer is an Oil buffer,
+    -- write its directory to a temp file so Fish can cd into it.
+    vim.api.nvim_create_autocmd('VimLeavePre', {
+      callback = function()
+        local buf = vim.api.nvim_get_current_buf()
+        local bufname = vim.api.nvim_buf_get_name(buf)
+
+        -- Oil buffers are named like "oil:///some/path"
+        local dir = bufname:match '^oil://(.+)$'
+
+        if dir and dir ~= '' then
+          -- Normalize the path
+          dir = vim.fn.fnamemodify(dir, ':p')
+          local tmp = '/tmp/.nvim_oil_lastdir'
+          local f = io.open(tmp, 'w')
+          if f then
+            f:write(dir)
+            f:close()
+          end
+        end
+      end,
+    })
+    -- Open oil on startup
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        if vim.fn.argc() == 0 then
+          vim.defer_fn(function()
+            require('oil').open()
+          end, 0)
+        end
+      end,
+    })
   end,
 }
