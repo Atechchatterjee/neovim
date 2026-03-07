@@ -5,22 +5,6 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- -- Create a new autocommand group for diagnostics
--- local augroup = vim.api.nvim_create_augroup('RobotDiagnostics', {})
--- -- Define an autocommand to configure diagnostics for .robot files
--- vim.api.nvim_create_autocmd('FileType', {
---   group = augroup,
---   pattern = 'robot',
---   callback = function()
---     -- Set diagnostic options specifically for .robot files
---     vim.diagnostic.config {
---       virtual_text = false,
---       signs = false,
---       underline = false,
---     }
---   end,
--- })
-
 vim.cmd [[set colorcolumn=0]]
 
 vim.opt.mouse = 'a'
@@ -51,7 +35,7 @@ vim.opt.splitbelow = true
 -- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 vim.opt.inccommand = 'split'
-vim.opt.tabstop = 2
+vim.opt.tabstop = 4
 vim.opt.shiftwidth = 2
 
 vim.opt.cursorline = false
@@ -116,7 +100,7 @@ require 'config.customkeybinds'
 -- vim.cmd [[hi SignColumn guibg=#282727]]
 
 -- sets the cursor color
-vim.cmd [[hi Cursor guibg=#606060]]
+-- vim.cmd [[hi Cursor guibg=#606060]]
 -- vim.cmd [[hi CursorLine guibg=#141414]]
 
 -- keybinds for todo-comments
@@ -167,11 +151,37 @@ vim.diagnostic.config {
   },
 }
 
--- vim.opt.fillchars = { vert = '│', horiz = '─', ... } -- Use unicode or other characters
--- vim.cmd 'hi VertSplit guifg=#3d3226 guibg=#111111'
--- vim.cmd 'hi WinSeparator guifg=#3d3226 guibg=#111111' -- For horizontal splits with laststatus=3
 vim.opt.laststatus = 3 -- Optional: unified status line
 
--- vim.cmd.colorscheme 'parchment-candlelight'
--- require('parchment-candlelight').setup()
 vim.opt.termguicolors = true
+
+-- Use Fish as the shell so abbreviations and aliases are available
+vim.opt.shell = 'fish'
+vim.opt.shellcmdflag = '-c'
+
+-- Neovide configurations
+if vim.g.neovide then
+  vim.g.neovide_cursor_animation_length = 0.04
+  vim.g.neovide_cursor_trail_size = 0
+  vim.g.neovide_cursor_antialiasing = false
+  vim.g.neovide_cursor_animate_in_insert_mode = false
+  vim.g.neovide_scroll_animation_length = 0.1
+  vim.g.neovide_has_mouse_grid_detection = true
+
+  vim.g.terminal_color_0 = '#45475a' -- Black
+  vim.g.terminal_color_1 = '#f38ba8' -- Red
+  vim.g.terminal_color_2 = '#a6e3a1' -- Green
+  vim.g.terminal_color_3 = '#f9e2af' -- Yellow
+  vim.g.terminal_color_4 = '#89b4fa' -- Blue
+  vim.g.terminal_color_5 = '#f5c2e7' -- Magenta
+  vim.g.terminal_color_6 = '#94e2d5' -- Cyan
+  vim.g.terminal_color_7 = '#bac2de' -- White
+  vim.g.terminal_color_8 = '#585b70' -- Bright Black
+  vim.g.terminal_color_9 = '#f38ba8' -- Bright Red
+  vim.g.terminal_color_10 = '#a6e3a1' -- Bright Green
+  vim.g.terminal_color_11 = '#f9e2af' -- Bright Yellow
+  vim.g.terminal_color_12 = '#89b4fa' -- Bright Blue
+  vim.g.terminal_color_13 = '#f5c2e7' -- Bright Magenta
+  vim.g.terminal_color_14 = '#94e2d5' -- Bright Cyan
+  vim.g.terminal_color_15 = '#a6adc8' -- Bright White
+end
