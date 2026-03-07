@@ -94,7 +94,7 @@ return {
         end,
       })
 
-      vim.cmd [[hi Normal guibg=#312F33 ctermbg=NONE]]
+      vim.cmd [[hi Normal guibg=#181818 ctermbg=NONE]]
     end,
   },
   {
