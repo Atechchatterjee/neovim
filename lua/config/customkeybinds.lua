@@ -118,3 +118,19 @@ local my_dirs = {
 vim.keymap.set('n', '<leader>fd', function()
   open_dir_picker(my_dirs)
 end, { desc = 'Open directory picker' })
+
+-- Bind to a keybind of your choice, e.g. <leader>fd
+vim.keymap.set('n', '<Esc><Esc>', [[<C-\><C-n>]], { noremap = true })
+vim.keymap.set('n', '<C-S-r>', ':e!<CR>', { noremap = true })
+vim.keymap.set('n', '<C-t>', ':tabnew<CR>', { noremap = true })
+
+vim.keymap.set('n', '<C-S-t>', ':tabnew | term<CR>i', { noremap = true })
+vim.keymap.set('n', '<leader>tj', ':hor term<CR>i', { noremap = true })
+vim.keymap.set('n', '<leader>tl', ':vert term<CR>i', { noremap = true })
+
+-- Resize with arrow keys
+vim.keymap.set('n', '<C-=>', ':resize +2<CR>', { silent = true })
+vim.keymap.set('n', '<C-A-=>', ':resize +2<CR>', { silent = true })
+vim.keymap.set('n', '<C-A-->', ':resize -2<CR>', { silent = true })
+vim.keymap.set('n', '<C-A-j>', ':vertical resize -5<CR>', { silent = true })
+vim.keymap.set('n', '<C-A-k>', ':vertical resize +5<CR>', { silent = true })
