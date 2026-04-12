@@ -124,9 +124,28 @@ vim.keymap.set('n', '<Esc><Esc>', [[<C-\><C-n>]], { noremap = true })
 vim.keymap.set('n', '<C-S-r>', ':e!<CR>', { noremap = true })
 vim.keymap.set('n', '<C-t>', ':tabnew<CR>', { noremap = true })
 
-vim.keymap.set('n', '<C-S-t>', ':tabnew | term<CR>i', { noremap = true })
+vim.keymap.set('n', '<A-j>', ':cnext<CR>', { noremap = true })
+vim.keymap.set('n', '<A-k>', ':cprev<CR>', { noremap = true })
+
+-- Terminal keybinds
+vim.keymap.set('n', '<leader>tt', function()
+  vim.cmd 'tabnew | term tmux new-session \\; set -g status off'
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('i', true, false, true), 'n', false)
+end, { noremap = true })
+vim.keymap.set('n', '<leader>tq', function()
+  vim.cmd '!tmux kill-session'
+  vim.cmd 'bd!'
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', false)
+end, { noremap = true })
 vim.keymap.set('n', '<leader>tj', ':hor term<CR>i', { noremap = true })
 vim.keymap.set('n', '<leader>tl', ':vert term<CR>i', { noremap = true })
+vim.keymap.set('n', '<leader>st', function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd 'J'
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('i', true, false, true), 'n', false)
+  vim.api.nvim_win_set_height(0, 10)
+end, { noremap = true })
 
 -- Resize with arrow keys
 vim.keymap.set('n', '<C-=>', ':resize +2<CR>', { silent = true })
@@ -134,3 +153,4 @@ vim.keymap.set('n', '<C-A-=>', ':resize +2<CR>', { silent = true })
 vim.keymap.set('n', '<C-A-->', ':resize -2<CR>', { silent = true })
 vim.keymap.set('n', '<C-A-j>', ':vertical resize -5<CR>', { silent = true })
 vim.keymap.set('n', '<C-A-k>', ':vertical resize +5<CR>', { silent = true })
+vim.keymap.set('n', '<leader>e', ':!', { silent = true })

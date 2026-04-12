@@ -5,34 +5,37 @@ return {
   main = 'ibl',
   opts = {},
   config = function()
-    --   local highlight = {
-    --     'RainbowRed',
-    --     'RainbowYellow',
-    --     'RainbowBlue',
-    --     'RainbowOrange',
-    --     'RainbowGreen',
-    --     'RainbowViolet',
-    --     'RainbowCyan',
-    --   }
+    local highlight = {
+      'RainbowRed',
+      'RainbowYellow',
+      'RainbowBlue',
+      'RainbowOrange',
+      'RainbowGreen',
+      'RainbowViolet',
+      'RainbowCyan',
+    }
     --
-    -- local hooks = require 'ibl.hooks'
+    local hooks = require 'ibl.hooks'
     -- create the highlight groups in the highlight setup hook, so they are reset
     -- every time the colorscheme changes
-    -- hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-    -- local indent_color = '#2d2419'
-    -- vim.api.nvim_set_hl(0, 'RainbowRed', { fg = indent_color })
-    -- vim.api.nvim_set_hl(0, 'RainbowYellow', { fg = indent_color })
-    -- vim.api.nvim_set_hl(0, 'RainbowBlue', { fg = indent_color })
-    -- vim.api.nvim_set_hl(0, 'RainbowOrange', { fg = indent_color })
-    -- vim.api.nvim_set_hl(0, 'RainbowGreen', { fg = indent_color })
-    -- vim.api.nvim_set_hl(0, 'RainbowViolet', { fg = indent_color })
-    -- vim.api.nvim_set_hl(0, 'RainbowCyan', { fg = indent_color })
-    -- end)
+    hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+      local indent_color = '#273e42'
+      vim.api.nvim_set_hl(0, 'RainbowRed', { fg = indent_color })
+      vim.api.nvim_set_hl(0, 'RainbowYellow', { fg = indent_color })
+      vim.api.nvim_set_hl(0, 'RainbowBlue', { fg = indent_color })
+      vim.api.nvim_set_hl(0, 'RainbowOrange', { fg = indent_color })
+      vim.api.nvim_set_hl(0, 'RainbowGreen', { fg = indent_color })
+      vim.api.nvim_set_hl(0, 'RainbowViolet', { fg = indent_color })
+      vim.api.nvim_set_hl(0, 'RainbowCyan', { fg = indent_color })
+    end)
 
-    -- require('ibl').setup { indent = { highlight = highlight } }
     require('ibl').setup {
-      indent = { char = '»' },
-      -- indent = { char = '•' },
+      indent = {
+        -- char = '•',
+        char = '│',
+        -- char = '»',
+        -- highlight = highlight,
+      },
       whitespace = {
         remove_blankline_trail = true,
       },

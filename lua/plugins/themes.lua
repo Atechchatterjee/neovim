@@ -1,5 +1,54 @@
 return {
   {
+    'metalelf0/black-metal-theme-neovim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('black-metal').setup {
+        -- optional configuration here
+      }
+      require('black-metal').load()
+    end,
+  },
+  {
+    'ribru17/bamboo.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('bamboo').setup {
+        -- optional configuration here
+      }
+      require('bamboo').load()
+    end,
+  },
+  { 'srcery-colors/srcery-vim' },
+  {
+    'maxmx03/solarized.nvim',
+    lazy = false,
+    priority = 1000,
+    ---@type solarized.config
+    opts = {},
+    config = function(_, opts)
+      vim.o.termguicolors = true
+      vim.o.background = 'dark'
+      require('solarized').setup(opts)
+      vim.cmd.colorscheme 'solarized'
+    end,
+  },
+  {
+    'whizikxd/naysayer-colors.nvim',
+    lazy = false,
+    config = function()
+      vim.cmd.colorscheme 'naysayer'
+    end,
+  },
+  {
+    'jpwol/thorn.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+  {
     'vague-theme/vague.nvim',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other plugins
@@ -79,23 +128,7 @@ return {
   },
   {
     'phha/zenburn.nvim',
-    config = function()
-      vim.cmd [[colorscheme zenburn]]
-
-      -- Set the background (bg) to a specific hex color (e.g., a light blue)
-      -- and foreground (fg) if needed.
-      -- vim.api.nvim_set_hl(0, 'Visual', { bg = '#B7B7B7', fg = '#000000', bold = false })
-
-      -- If you switch colorschemes dynamically, use an autocommand to re-apply:
-      vim.api.nvim_create_autocmd({ 'VimEnter', 'ColorScheme' }, {
-        group = vim.api.nvim_create_augroup('CustomVisuals', {}),
-        callback = function()
-          vim.api.nvim_set_hl(0, 'Visual', { bg = '#337A00', fg = '#000000', bold = false })
-        end,
-      })
-
-      vim.cmd [[hi Normal guibg=#181818 ctermbg=NONE]]
-    end,
+    config = function() end,
   },
   {
     dir = '~/.config/nvim/lua/parchment-candlelight',

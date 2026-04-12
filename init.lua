@@ -36,7 +36,7 @@ vim.opt.splitbelow = true
 
 vim.opt.inccommand = 'split'
 vim.opt.tabstop = 4
-vim.opt.shiftwidth = 2
+vim.opt.shiftwidth = 4
 
 vim.opt.cursorline = false
 
@@ -57,14 +57,6 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -95,6 +87,7 @@ require('lazy').setup({
 })
 
 require 'config.customkeybinds'
+require 'config.autocmd'
 
 -- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 -- vim.cmd [[hi SignColumn guibg=#282727]]
@@ -184,4 +177,22 @@ if vim.g.neovide then
   vim.g.terminal_color_13 = '#f5c2e7' -- Bright Magenta
   vim.g.terminal_color_14 = '#94e2d5' -- Bright Cyan
   vim.g.terminal_color_15 = '#a6adc8' -- Bright White
+
+  vim.o.linespace = 4 -- Add 4 pixels between lines
+  -- vim.g.neovide_opacity = 0.95
+
+  vim.keymap.set('n', '<F11>', function()
+    vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
+  end, { desc = 'Toggle Neovide Fullscreen' })
 end
+
+-- require './lua/config/autocmd.lua'
+-- vim.cmd.colorscheme 'iceberg'
+-- vim.cmd.colorscheme 'kanagawa'
+-- vim.cmd.colorscheme 'habamax'
+vim.cmd.colorscheme 'windir-alt'
+vim.cmd.background = 'dark'
+-- vim.cmd.colorscheme 'github-monochrome-solarized'
+-- vim.cmd.colorscheme 'solarized'
+vim.cmd [[set cursorline]]
+-- vim.cmd.colorscheme 'lunaperche'
