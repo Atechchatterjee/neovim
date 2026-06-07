@@ -32,7 +32,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- vim.opt.list = true
--- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 vim.opt.inccommand = 'split'
 vim.opt.tabstop = 4
@@ -89,9 +89,6 @@ require('lazy').setup({
 require 'config.customkeybinds'
 require 'config.autocmd'
 
--- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
--- vim.cmd [[hi SignColumn guibg=#282727]]
-
 -- sets the cursor color
 -- vim.cmd [[hi Cursor guibg=#606060]]
 -- vim.cmd [[hi CursorLine guibg=#141414]]
@@ -114,7 +111,7 @@ end, { desc = 'Open list of todos in telescope' })
 
 vim.g.lazygit_floating_window_winblend = 1 -- transparency of floating window
 vim.g.lazygit_floating_window_scaling_factor = 0.9 -- scaling factor for floating window
--- vim.g.lazygit_floating_window_border_chars = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' } -- customize lazygit popup window border characters
+vim.g.lazygit_floating_window_border_chars = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' } -- customize lazygit popup window border characters
 vim.g.lazygit_floating_window_use_plenary = 0 -- use plenary.nvim to manage floating window if available
 vim.g.lazygit_use_neovim_remote = 1 -- fallback to 0 if neovim-remote is not installed
 
@@ -161,22 +158,22 @@ if vim.g.neovide then
   vim.g.neovide_scroll_animation_length = 0.1
   vim.g.neovide_has_mouse_grid_detection = true
 
-  vim.g.terminal_color_0 = '#45475a' -- Black
-  vim.g.terminal_color_1 = '#f38ba8' -- Red
-  vim.g.terminal_color_2 = '#a6e3a1' -- Green
-  vim.g.terminal_color_3 = '#f9e2af' -- Yellow
-  vim.g.terminal_color_4 = '#89b4fa' -- Blue
-  vim.g.terminal_color_5 = '#f5c2e7' -- Magenta
-  vim.g.terminal_color_6 = '#94e2d5' -- Cyan
-  vim.g.terminal_color_7 = '#bac2de' -- White
-  vim.g.terminal_color_8 = '#585b70' -- Bright Black
-  vim.g.terminal_color_9 = '#f38ba8' -- Bright Red
-  vim.g.terminal_color_10 = '#a6e3a1' -- Bright Green
-  vim.g.terminal_color_11 = '#f9e2af' -- Bright Yellow
-  vim.g.terminal_color_12 = '#89b4fa' -- Bright Blue
-  vim.g.terminal_color_13 = '#f5c2e7' -- Bright Magenta
-  vim.g.terminal_color_14 = '#94e2d5' -- Bright Cyan
-  vim.g.terminal_color_15 = '#a6adc8' -- Bright White
+  -- vim.g.terminal_color_0 = '#45475a' -- Black
+  -- vim.g.terminal_color_1 = '#f38ba8' -- Red
+  -- vim.g.terminal_color_2 = '#a6e3a1' -- Green
+  -- vim.g.terminal_color_3 = '#f9e2af' -- Yellow
+  -- vim.g.terminal_color_4 = '#89b4fa' -- Blue
+  -- vim.g.terminal_color_5 = '#f5c2e7' -- Magenta
+  -- vim.g.terminal_color_6 = '#94e2d5' -- Cyan
+  -- vim.g.terminal_color_7 = '#bac2de' -- White
+  -- vim.g.terminal_color_8 = '#585b70' -- Bright Black
+  -- vim.g.terminal_color_9 = '#f38ba8' -- Bright Red
+  -- vim.g.terminal_color_10 = '#a6e3a1' -- Bright Green
+  -- vim.g.terminal_color_11 = '#f9e2af' -- Bright Yellow
+  -- vim.g.terminal_color_12 = '#89b4fa' -- Bright Blue
+  -- vim.g.terminal_color_13 = '#f5c2e7' -- Bright Magenta
+  -- vim.g.terminal_color_14 = '#94e2d5' -- Bright Cyan
+  -- vim.g.terminal_color_15 = '#a6adc8' -- Bright White
 
   vim.o.linespace = 4 -- Add 4 pixels between lines
   -- vim.g.neovide_opacity = 0.95
@@ -187,12 +184,15 @@ if vim.g.neovide then
 end
 
 -- require './lua/config/autocmd.lua'
--- vim.cmd.colorscheme 'iceberg'
--- vim.cmd.colorscheme 'kanagawa'
--- vim.cmd.colorscheme 'habamax'
-vim.cmd.colorscheme 'windir-alt'
-vim.cmd.background = 'dark'
--- vim.cmd.colorscheme 'github-monochrome-solarized'
--- vim.cmd.colorscheme 'solarized'
+-- vim.cmd.colorscheme 'minischeme'
+-- vim.cmd.colorscheme 'alabaster'
+vim.cmd.colorscheme 'alabaster'
+-- vim.cmd.colorscheme 'WinterIsComing-dark-blue-color-theme'
 vim.cmd [[set cursorline]]
--- vim.cmd.colorscheme 'lunaperche'
+
+-- vim.cmd.colorscheme 'seoulbones'
+vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+vim.cmd 'filetype plugin indent on'
+vim.cmd [[hi NonText guibg=NONE ctermbg=NONE]]
+-- vim.cmd [[hi SignColumn guibg=#434343]]
+-- vim.cmd [[hi LineNr guibg=#434343]]

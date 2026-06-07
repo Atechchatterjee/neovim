@@ -1,5 +1,5 @@
 -- Parchment Candlelight - A warm color scheme with rich orange tones
--- Maintainer: Claude
+-- Maintainer: Anish
 -- License: MIT
 
 local M = {}

@@ -19,20 +19,20 @@ return {
     -- create the highlight groups in the highlight setup hook, so they are reset
     -- every time the colorscheme changes
     hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-      local indent_color = '#273e42'
-      vim.api.nvim_set_hl(0, 'RainbowRed', { fg = indent_color })
-      vim.api.nvim_set_hl(0, 'RainbowYellow', { fg = indent_color })
-      vim.api.nvim_set_hl(0, 'RainbowBlue', { fg = indent_color })
-      vim.api.nvim_set_hl(0, 'RainbowOrange', { fg = indent_color })
-      vim.api.nvim_set_hl(0, 'RainbowGreen', { fg = indent_color })
-      vim.api.nvim_set_hl(0, 'RainbowViolet', { fg = indent_color })
-      vim.api.nvim_set_hl(0, 'RainbowCyan', { fg = indent_color })
+      local indent_color = '#000000'
+      vim.api.nvim_set_hl(0, 'RainbowRed', { fg = indent_color, bg = indent_color })
+      vim.api.nvim_set_hl(0, 'RainbowYellow', { fg = indent_color, bg = indent_color })
+      vim.api.nvim_set_hl(0, 'RainbowBlue', { fg = indent_color, bg = indent_color })
+      vim.api.nvim_set_hl(0, 'RainbowOrange', { fg = indent_color, bg = indent_color })
+      vim.api.nvim_set_hl(0, 'RainbowGreen', { fg = indent_color, bg = indent_color })
+      vim.api.nvim_set_hl(0, 'RainbowViolet', { fg = indent_color, bg = indent_color })
+      vim.api.nvim_set_hl(0, 'RainbowCyan', { fg = indent_color, bg = indent_color })
     end)
 
     require('ibl').setup {
       indent = {
-        -- char = '•',
-        char = '│',
+        char = '•',
+        -- char = '│',
         -- char = '»',
         -- highlight = highlight,
       },
