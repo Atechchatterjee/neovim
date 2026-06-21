@@ -157,6 +157,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animate_in_insert_mode = false
   vim.g.neovide_scroll_animation_length = 0.1
   vim.g.neovide_has_mouse_grid_detection = true
+  -- vim.g.neovide_background_color = '#181818'
 
   -- vim.g.terminal_color_0 = '#45475a' -- Black
   -- vim.g.terminal_color_1 = '#f38ba8' -- Red
@@ -186,13 +187,16 @@ end
 -- require './lua/config/autocmd.lua'
 -- vim.cmd.colorscheme 'minischeme'
 -- vim.cmd.colorscheme 'alabaster'
-vim.cmd.colorscheme 'alabaster'
+-- vim.cmd.colorscheme 'habamax'
+vim.cmd.colorscheme 'solarized'
 -- vim.cmd.colorscheme 'WinterIsComing-dark-blue-color-theme'
 vim.cmd [[set cursorline]]
 
 -- vim.cmd.colorscheme 'seoulbones'
-vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+-- vim.api.nvim_set_hl(0, 'Normal', { bg = '#181818' })
+vim.api.nvim_set_hl(0, 'Normal', { bg = '#00191E' })
+-- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 vim.cmd 'filetype plugin indent on'
-vim.cmd [[hi NonText guibg=NONE ctermbg=NONE]]
+-- vim.cmd [[hi NonText guibg=NONE ctermbg=NONE]]
 -- vim.cmd [[hi SignColumn guibg=#434343]]
 -- vim.cmd [[hi LineNr guibg=#434343]]

@@ -62,11 +62,11 @@ return {
       }
     end,
   },
-  -- {
-  --   'webhooked/kanso.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  -- },
+  {
+    'webhooked/kanso.nvim',
+    lazy = false,
+    priority = 1000,
+  },
   -- {
   --   'ricardoraposo/nightwolf.nvim',
   --   lazy = false,
@@ -101,17 +101,17 @@ return {
       require('black-metal').load()
     end,
   },
-  -- {
-  --   'ribru17/bamboo.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require('bamboo').setup {
-  --       -- optional configuration here
-  --     }
-  --     require('bamboo').load()
-  --   end,
-  -- },
+  {
+    'ribru17/bamboo.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('bamboo').setup {
+        -- optional configuration here
+      }
+      require('bamboo').load()
+    end,
+  },
   { 'srcery-colors/srcery-vim' },
   {
     'maxmx03/solarized.nvim',
@@ -370,63 +370,63 @@ return {
   --       -- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
   --     end,
   --   },
-  --   {
-  --     'ramojus/mellifluous.nvim',
-  --     init = function()
-  --       -- vim.cmd.colorscheme 'mellifluous'
-  --     end,
-  --     config = function()
-  --       require('mellifluous').setup {
-  --         dim_inactive = false,
-  --         colorset = 'mountain',
-  --         styles = { -- see :h attr-list for options. set {} for NONE, { option = true } for option
-  --           main_keywords = {},
-  --           other_keywords = {},
-  --           types = {},
-  --           operators = {},
-  --           strings = {},
-  --           functions = {},
-  --           constants = {},
-  --           comments = { italic = true },
-  --           markup = {
-  --             headings = { bold = true },
-  --           },
-  --           folds = {},
-  --         },
-  --         transparent_background = {
-  --           enabled = true,
-  --           floating_windows = true,
-  --           telescope = true,
-  --           file_tree = true,
-  --           cursor_line = true,
-  --           status_line = false,
-  --         },
-  --         flat_background = {
-  --           line_numbers = false,
-  --           floating_windows = false,
-  --           file_tree = false,
-  --           cursor_line_number = false,
-  --         },
-  --         plugins = {
-  --           cmp = true,
-  --           gitsigns = true,
-  --           indent_blankline = true,
-  --           telescope = {
-  --             enabled = true,
-  --             nvchad_like = true,
-  --           },
-  --           startify = true,
-  --         },
-  --       }
-  --       -- vim.cmd [[colorscheme mellifluous]]
-  --       -- vim.api.nvim_create_autocmd('ColorScheme', {
-  --       --   command = [[highlight CursorLine guibg=#2B2A2A cterm=underline]],
-  --       -- })
-  --       -- vim.api.nvim_create_autocmd('BufEnter', {
-  --       --   command = [[highlight Visual cterm=NONE ctermbg=#424242  ctermfg=none]],
-  --       -- })
-  --     end,
-  --   },
+  {
+    'ramojus/mellifluous.nvim',
+    init = function()
+      -- vim.cmd.colorscheme 'mellifluous'
+    end,
+    config = function()
+      require('mellifluous').setup {
+        dim_inactive = false,
+        colorset = 'mountain',
+        styles = { -- see :h attr-list for options. set {} for NONE, { option = true } for option
+          main_keywords = {},
+          other_keywords = {},
+          types = {},
+          operators = {},
+          strings = {},
+          functions = {},
+          constants = {},
+          comments = { italic = true },
+          markup = {
+            headings = { bold = true },
+          },
+          folds = {},
+        },
+        transparent_background = {
+          enabled = true,
+          floating_windows = true,
+          telescope = true,
+          file_tree = true,
+          cursor_line = true,
+          status_line = false,
+        },
+        flat_background = {
+          line_numbers = false,
+          floating_windows = false,
+          file_tree = false,
+          cursor_line_number = false,
+        },
+        plugins = {
+          cmp = true,
+          gitsigns = true,
+          indent_blankline = true,
+          telescope = {
+            enabled = true,
+            nvchad_like = true,
+          },
+          startify = true,
+        },
+      }
+      -- vim.cmd [[colorscheme mellifluous]]
+      -- vim.api.nvim_create_autocmd('ColorScheme', {
+      --   command = [[highlight CursorLine guibg=#2B2A2A cterm=underline]],
+      -- })
+      -- vim.api.nvim_create_autocmd('BufEnter', {
+      --   command = [[highlight Visual cterm=NONE ctermbg=#424242  ctermfg=none]],
+      -- })
+    end,
+  },
   --   {
   --     'folke/tokyonight.nvim',
   --     lazy = false,
@@ -700,15 +700,15 @@ return {
   --       }
   --     end,
   --   },
-  --   {
-  --     'navarasu/onedark.nvim',
-  --     opts = {
-  --       style = 'darker',
-  --     },
-  --     init = function()
-  --       -- vim.cmd 'colorscheme onedark'
-  --     end,
-  --   },
+  {
+    'navarasu/onedark.nvim',
+    opts = {
+      style = 'darker',
+    },
+    init = function()
+      -- vim.cmd 'colorscheme onedark'
+    end,
+  },
   --   { 'bluz71/vim-nightfly-colors', name = 'nightfly', lazy = false, priority = 1000 },
   --   {
   --     'EdenEast/nightfox.nvim',

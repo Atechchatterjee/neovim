@@ -154,3 +154,6 @@ vim.keymap.set('n', '<C-A-->', ':resize -2<CR>', { silent = true })
 vim.keymap.set('n', '<C-A-j>', ':vertical resize -5<CR>', { silent = true })
 vim.keymap.set('n', '<C-A-k>', ':vertical resize +5<CR>', { silent = true })
 vim.keymap.set('n', '<leader>e', ':!', { silent = true })
+
+-- Quick Fix list for diagnostic
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagnostics in Quickfix' })
